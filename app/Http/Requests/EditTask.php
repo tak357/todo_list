@@ -58,7 +58,7 @@ class EditTask extends FormRequest
 
         return $messages +
         [
-            'status.in' => ':attribute には' . $status_labels . ' のいずれかを指定してください。'
+            'status.in' => ':attribute には ' . $status_labels . ' のいずれかを指定してください。',
         ];
     }
 }
