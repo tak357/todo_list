@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Folder;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateFolder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FolderController extends Controller
@@ -22,11 +22,8 @@ class FolderController extends Controller
         // タイトルに入力値を代入する
         $folder->title = $request->title;
 
-        // ユーザーに紐づけて保存
-        Aurh::user()->folders()->save($folder);
-
         // インスタンスの状態をデータベースに書き込む
-        $folder->save();
+        Auth::user()->folders()->save($folder);
 
         // return redirect('tasks.index', // この記述方法でもOK
         return redirect()->route('tasks.index',

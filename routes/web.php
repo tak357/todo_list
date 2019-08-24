@@ -16,20 +16,23 @@ Route::group(['middleware' => 'auth'], function()
     // トップページ
     Route::get('/', 'HomeController@index')->name('home');
 
-    // タスク一覧画面
-    Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
-
     // フォルダ作成機能
     Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
     Route::post('/folders/create', 'FolderController@create');
 
-    // タスク作成機能
-    Route::get('/folders/{id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
-    Route::post('/folders/{id}/tasks/create', 'TaskController@create');
+    Route::group(['middleware' => 'can:view.folder'], function()
+    {
+        // タスク一覧画面
+        Route::get('/folders/{folder}/tasks', 'TaskController@index')->name('tasks.index');
 
-    // タスク編集機能
-    Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
-    Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
+        // タスク作成機能
+        Route::get('/folders/{folder}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
+        Route::post('/folders/{folder}/tasks/create', 'TaskController@create');
+
+        // タスク編集機能
+        Route::get('/folders/{folder}/tasks/{task}/edit', 'TaskController@showEditForm')->name('tasks.edit');
+        Route::post('/folders/{folder}/tasks/{task}/edit', 'TaskController@edit');
+    });
 });
 
 Auth::routes();

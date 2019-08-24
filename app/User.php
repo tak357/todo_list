@@ -2,10 +2,10 @@
 
 namespace App;
 
+use App\Mail\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Mail\ResetPassword;
 use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
@@ -35,10 +35,6 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
     public function folders()
     {
         return $this->hasMany('App\Models\Folder');
