@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Models\Folder;
+use App\User;
 
 class FolderPolicy
 {
