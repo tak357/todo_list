@@ -6,17 +6,18 @@ use App\Models\Task;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class EditTask extends FormRequest
+// class EditTask extends FormRequest
+class EditTask extends CreateTask
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return true;
-    }
+    // public function authorize()
+    // {
+    //     return true;
+    // }
 
     /**
      * Get the validation rules that apply to the request.
